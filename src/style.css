@@ -323,3 +323,93 @@ textarea {
     padding: 15px;
   }
 }
+@media (min-width: 370px) and (max-width: 480px) {
+  body {
+    font-size: 15px;
+  }
+  main {
+    padding: 0 14px 32px;
+  }
+  header {
+    min-height: 68px;
+    height: auto;
+    padding: 12px 0;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .brand {
+    font-size: 22px;
+    white-space: nowrap;
+  }
+  header nav {
+    max-width: 62%;
+    gap: 7px;
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+  header nav select {
+    max-width: 95px;
+  }
+  .hero {
+    padding: 44px 0 28px;
+  }
+  .hero h1,
+  .title h1 {
+    font-size: clamp(32px, 11vw, 42px);
+    line-height: 1.12;
+  }
+  .title {
+    padding: 38px 0 20px;
+  }
+  .products {
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .icon {
+    height: 180px;
+  }
+  .products article > div:not(.icon) {
+    padding: 16px;
+  }
+  .products article h2 {
+    font-size: 21px;
+  }
+  .products article .buttons {
+    gap: 7px;
+  }
+  button,
+  .menu a,
+  .menu button {
+    min-height: 42px;
+  }
+  .order {
+    padding: 16px;
+    gap: 14px;
+  }
+  .order h2 {
+    font-size: 21px;
+  }
+  .order-actions,
+  .buttons {
+    width: 100%;
+  }
+  .auth {
+    padding: 14px;
+  }
+  .auth form,
+  .modal form {
+    width: 100%;
+    padding: 24px 18px;
+    border-radius: 14px;
+  }
+  .auth h1 {
+    font-size: 34px;
+  }
+  .modal {
+    padding: 14px;
+  }
+  .order-filters {
+    margin-bottom: 16px;
+    border-radius: 11px;
+  }
+}
