@@ -342,7 +342,7 @@ function Orders() {
                 </em>
               </h2>
               <p>
-                {o.quantity} × ${Number(o.price).toFixed(2)} · Total $
+                {o.quantity} × ${Number(o.price).toFixed(2)} · {t("Total")} $
                 {Number(o.total).toFixed(2)}
               </p>
               {admin && (

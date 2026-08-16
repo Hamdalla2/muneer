@@ -65,6 +65,7 @@ const ar = {
   "Order quantity": "كمية الطلب",
   Quantity: "الكمية",
   "Place order": "تأكيد الطلب",
+  Total: "المجموع",
 };
 
 export const translate = (text, language) =>
