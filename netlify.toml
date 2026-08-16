@@ -3,6 +3,11 @@
   publish = "dist"
   functions = "netlify/functions"
 
+[dev]
+  command = "npm run vite:dev"
+  targetPort = 5173
+  port = 8888
+
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
