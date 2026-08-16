@@ -270,11 +270,11 @@ function Signin() {
                     <>
                         <label>
                             {t("Name")}
-                            <input name="name" onChange={c} />
+                            <input required name="name" onChange={c} />
                         </label>
                         <label>
                             {t("Phone")}
-                            <input name="phone" onChange={c} />
+                            <input required name="phone" type="tel" onChange={c} />
                         </label>
                     </>
                 )}
@@ -342,8 +342,7 @@ function Orders() {
                                 </em>
                             </h2>
                             <p>
-                                {o.quantity} × {Number(o.price).toFixed(2)} = {t("Total")}
-                                {Number(o.total).toFixed(2)}
+                                {o.quantity} × {Number(o.price).toFixed(2)} = {Number(o.total).toFixed(2)}
                             </p>
                             {admin && (
                                 <p>
