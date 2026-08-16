@@ -17,6 +17,9 @@ const ar = {
   "New here? Sign up": "ليس لديك حساب؟ أنشئ حساباً", "Already have an account? Sign in": "لديك حساب بالفعل؟ سجل الدخول",
   "Save profile": "حفظ الملف الشخصي", "Back to menu": "العودة للقائمة", "Current password": "كلمة المرور الحالية",
   "New password": "كلمة المرور الجديدة", "Update password": "تحديث كلمة المرور",
+  "OUR COLLECTION": "منتجاتنا", "Add product +": "إضافة منتج +", "Update": "تعديل",
+  "MY ACCOUNT": "حسابي", "No orders yet.": "لا توجد طلبات حتى الآن.",
+  "Customer:": "العميل:", "Unknown": "غير معروف", "no phone": "لا يوجد هاتف",
 };
 
 export const translate = (text, language) => language === "arabic" ? (ar[text] || text) : text;
