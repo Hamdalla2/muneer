@@ -56,7 +56,7 @@ const ar = {
   Update: "تعديل",
   "MY ACCOUNT": "حسابي",
   "No orders yet.": "لا توجد طلبات حتى الآن.",
-  "Customer:": "العميل:",
+  "Customer:": "الزبون:",
   Unknown: "غير معروف",
   "no phone": "لا يوجد هاتف",
   WELCOME: "مرحباً",
@@ -66,6 +66,10 @@ const ar = {
   Quantity: "الكمية",
   "Place order": "تأكيد الطلب",
   Total: "المجموع",
+  "Search customer": "بحث عن زبون",
+  "Name or phone": "الاسم أو الهاتف",
+  Status: "الحالة",
+  "All statuses": "كل الحالات",
 };
 
 export const translate = (text, language) =>

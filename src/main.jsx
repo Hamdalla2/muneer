@@ -304,6 +304,8 @@ function Orders() {
         t = (text) => translate(text, language),
         admin = user.role === "admin",
         [orders, setOrders] = useState([]),
+        [search, setSearch] = useState(""),
+        [status, setStatus] = useState("all"),
         [msg, setMsg] = useState("");
     let load = () =>
         api("orders")
@@ -312,6 +314,12 @@ function Orders() {
     useEffect(() => {
         load();
     }, []);
+    const visibleOrders = orders.filter((order) => {
+        const matchesSearch = `${order.buyerName || ""} ${order.phone || ""}`
+            .toLowerCase()
+            .includes(search.trim().toLowerCase());
+        return (!admin || matchesSearch) && (status === "all" || order.status === status);
+    });
     let update = async (o, status = o.status, paid = o.paid) => {
         try {
             await api("orders", {
@@ -331,8 +339,27 @@ function Orders() {
                 <h1>{t(admin ? "All orders" : "My orders")}</h1>
             </section>
             {msg && <p className="error">{msg}</p>}
+            {admin && (
+                <div className="order-filters">
+                    <label>
+                        {t("Search customer")}
+                        <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder={t("Name or phone")} />
+                    </label>
+                    <label>
+                        {t("Status")}
+                        <select value={status} onChange={(e) => setStatus(e.target.value)}>
+                            <option value="all">{t("All statuses")}</option>
+                            <option value="new">{t("New")}</option>
+                            <option value="started">{t("Started")}</option>
+                            <option value="on the way">{t("On the way")}</option>
+                            <option value="received">{t("Received")}</option>
+                            <option value="rejected">{t("Rejected")}</option>
+                        </select>
+                    </label>
+                </div>
+            )}
             <section className="orders">
-                {orders.map((o) => (
+                {visibleOrders.map((o) => (
                     <article className="order" key={o._id}>
                         <div>
                             <h2>
