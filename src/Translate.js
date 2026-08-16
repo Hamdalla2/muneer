@@ -1,3 +1,22 @@
-export const languages={english:"English",arabic:"العربية"};
-const ar={"Muneer Store":"متجر منير","Menu":"القائمة","Sign in":"تسجيل الدخول","Products":"المنتجات","My Orders":"طلباتي","My Profile":"ملفي الشخصي","Change Password":"تغيير كلمة المرور","Sign Out":"تسجيل الخروج","Hello":"مرحباً","Language":"اللغة","Account":"الحساب"};
-export const translate=(text,language)=>language==="arabic"?(ar[text]||text):text;
+export const languages = { english: "English", arabic: "العربية" };
+
+const ar = {
+  "Muneer Store": "متجر منير", Menu: "القائمة", "Sign in": "تسجيل الدخول",
+  "Sign up": "إنشاء حساب", "Create account": "إنشاء حساب", Products: "المنتجات",
+  "My Orders": "طلباتي", "My Profile": "ملفي الشخصي", "Change Password": "تغيير كلمة المرور",
+  "Sign Out": "تسجيل الخروج", Hello: "مرحباً", Language: "اللغة", Account: "الحساب",
+  Admin: "المسؤول", "All orders": "كل الطلبات", "My orders": "طلباتي",
+  "Our Collection": "منتجاتنا", "Good things, simply delivered.": "أشياء جيدة، تصل إليك بسهولة.",
+  "Browse our carefully selected products.": "تصفح منتجاتنا المختارة بعناية.",
+  "Add product": "إضافة منتج", "Update product": "تعديل المنتج", Name: "الاسم", Price: "السعر",
+  "Info / bio": "الوصف / المعلومات", "Product image": "صورة المنتج", Save: "حفظ", Cancel: "إلغاء",
+  Edit: "تعديل", Delete: "حذف", "Order now": "اطلب الآن", Paid: "مدفوع",
+  Start: "بدء", Reject: "رفض", Finished: "تم التجهيز", Received: "تم الاستلام",
+  "On the way": "في الطريق", New: "جديد", Started: "قيد التجهيز", Rejected: "مرفوض",
+  Welcome: "مرحباً", Username: "اسم المستخدم", Password: "كلمة المرور", Phone: "الهاتف",
+  "New here? Sign up": "ليس لديك حساب؟ أنشئ حساباً", "Already have an account? Sign in": "لديك حساب بالفعل؟ سجل الدخول",
+  "Save profile": "حفظ الملف الشخصي", "Back to menu": "العودة للقائمة", "Current password": "كلمة المرور الحالية",
+  "New password": "كلمة المرور الجديدة", "Update password": "تحديث كلمة المرور",
+};
+
+export const translate = (text, language) => language === "arabic" ? (ar[text] || text) : text;
