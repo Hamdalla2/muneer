@@ -70,6 +70,8 @@ const ar = {
   "Name or phone": "الاسم أو الهاتف",
   Status: "الحالة",
   "All statuses": "كل الحالات",
+  "View images": "عرض الصور",
+  Close: "إغلاق",
 };
 
 export const translate = (text, language) =>

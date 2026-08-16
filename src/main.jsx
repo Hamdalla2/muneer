@@ -70,6 +70,8 @@ function Products() {
         [edit, setEdit] = useState(),
         [orderProduct, setOrderProduct] = useState(null),
         [quantity, setQuantity] = useState(1),
+        [gallery, setGallery] = useState(null),
+        [galleryIndex, setGalleryIndex] = useState(0),
         [msg, setMsg] = useState("");
     useEffect(() => {
         loadProducts().catch((e) => setMsg(e.message));
@@ -138,6 +140,12 @@ function Products() {
                 setMsg(e.message);
             }
     };
+    const openGallery = (product) => {
+        const images = product.images?.length ? product.images : product.image ? [product.image] : [];
+        if (!images.length) return;
+        setGallery({ name: product.name, images });
+        setGalleryIndex(0);
+    };
     return (
         <main>
             <Header />
@@ -155,9 +163,9 @@ function Products() {
             <section className="products">
                 {products.map((p) => (
                     <article key={p._id}>
-                        <div className="icon">
+                        <button className="icon" type="button" style={{ border: 0, padding: 0, width: "100%", cursor: p.images?.[0] || p.image ? "zoom-in" : "default" }} onClick={() => openGallery(p)} aria-label={`${t("View images")} ${p.name}`}>
                             {p.images?.[0] || p.image ? <img src={p.images?.[0] || p.image} alt={p.name} /> : "📦"}
-                        </div>
+                        </button>
                         <div>
                             <h2>{p.name}</h2>
                             <p>{p.bio}</p>
@@ -234,6 +242,19 @@ function Products() {
                             <button className="primary">{t("Place order")}</button>
                         </div>
                     </form>
+                </div>
+            )}
+            {gallery && (
+                <div className="modal" role="dialog" aria-modal="true" aria-label={gallery.name} onClick={() => setGallery(null)}>
+                    <div onClick={(e) => e.stopPropagation()} style={{ width: "min(92vw, 760px)", textAlign: "center" }}>
+                        <img src={gallery.images[galleryIndex]} alt={`${gallery.name} ${galleryIndex + 1}`} style={{ width: "100%", maxHeight: "70vh", objectFit: "contain", borderRadius: "12px", background: "white" }} />
+                        <div className="buttons" style={{ justifyContent: "center", marginTop: "12px" }}>
+                            {gallery.images.length > 1 && <button type="button" onClick={() => setGalleryIndex((galleryIndex - 1 + gallery.images.length) % gallery.images.length)}>‹</button>}
+                            <span>{galleryIndex + 1} / {gallery.images.length}</span>
+                            {gallery.images.length > 1 && <button type="button" onClick={() => setGalleryIndex((galleryIndex + 1) % gallery.images.length)}>›</button>}
+                            <button type="button" onClick={() => setGallery(null)}>{t("Close")}</button>
+                        </div>
+                    </div>
                 </div>
             )}
         </main>
