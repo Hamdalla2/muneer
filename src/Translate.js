@@ -62,6 +62,9 @@ const ar = {
   WELCOME: "مرحباً",
   "Save product": "حفظ المنتج",
   Add: "إضافة",
+  "Order quantity": "كمية الطلب",
+  Quantity: "الكمية",
+  "Place order": "تأكيد الطلب",
 };
 
 export const translate = (text, language) =>

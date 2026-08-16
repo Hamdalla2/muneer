@@ -68,23 +68,30 @@ function Products() {
     admin = user?.role === "admin",
     nav = useNavigate(),
     [edit, setEdit] = useState(),
+    [orderProduct, setOrderProduct] = useState(null),
+    [quantity, setQuantity] = useState(1),
     [msg, setMsg] = useState("");
   useEffect(() => {
     loadProducts().catch((e) => setMsg(e.message));
   }, []);
-  let order = async (p) => {
+  let order = (p) => {
     if (!user) return nav("/signin");
-    let quantity = +prompt(`How many ${p.name}?`, "1");
-    if (quantity)
-      try {
-        await api("orders", {
-          method: "POST",
-          body: JSON.stringify({ productId: p._id, quantity }),
-        });
-        nav("/orders");
-      } catch (e) {
-        setMsg(e.message);
-      }
+    setQuantity(1);
+    setOrderProduct(p);
+  };
+  let placeOrder = async (e) => {
+    e.preventDefault();
+    if (!Number.isInteger(Number(quantity)) || Number(quantity) < 1) return;
+    try {
+      await api("orders", {
+        method: "POST",
+        body: JSON.stringify({ productId: orderProduct._id, quantity: Number(quantity) }),
+      });
+      setOrderProduct(null);
+      nav("/orders");
+    } catch (e) {
+      setMsg(e.message);
+    }
   };
   let save = async (e) => {
     e.preventDefault();
@@ -209,6 +216,22 @@ function Products() {
                 {t("Cancel")}
               </button>
               <button className="primary">{t("Save")}</button>
+            </div>
+          </form>
+        </div>
+      )}
+      {orderProduct && (
+        <div className="modal" role="dialog" aria-modal="true" aria-labelledby="order-quantity-title">
+          <form onSubmit={placeOrder}>
+            <h2 id="order-quantity-title">{t("Order quantity")}</h2>
+            <p>{orderProduct.name}</p>
+            <label>
+              {t("Quantity")}
+              <input type="number" min="1" step="1" autoFocus value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+            </label>
+            <div className="buttons">
+              <button type="button" onClick={() => setOrderProduct(null)}>{t("Cancel")}</button>
+              <button className="primary">{t("Place order")}</button>
             </div>
           </form>
         </div>
